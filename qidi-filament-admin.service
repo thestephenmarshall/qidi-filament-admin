@@ -1,0 +1,15 @@
+[Unit]
+Description=QIDI custom filament admin web form
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=python3 /home/qidi/qidi_filament_admin.py
+Restart=on-failure
+RestartSec=2
+# Needs root so it can edit officiall_filas_list.cfg under /home/qidi/printer_data/config
+# and call `systemctl restart qidi-client.service` without a sudo prompt.
+User=root
+
+[Install]
+WantedBy=multi-user.target
